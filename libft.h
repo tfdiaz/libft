@@ -6,7 +6,7 @@
 /*   By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/09 10:46:53 by tdiaz             #+#    #+#             */
-/*   Updated: 2018/07/11 18:48:18 by tdiaz            ###   ########.fr       */
+/*   Updated: 2018/07/17 20:26:45 by tdiaz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# define BUFF_SIZE 32
+
 typedef struct	s_list
 {
 	void			*content;
@@ -25,6 +27,23 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+typedef	struct	s_vect
+{
+	size_t	len;
+	size_t	cap;
+	size_t	num_chars;
+	char	*str;
+}				t_vect;
+
+typedef struct	s_fd
+{
+	int			fd;
+	char		buff[BUFF_SIZE + 1];
+	struct s_fd	*next;
+
+}				t_fd;
+
+int				ft_printf(const char *format, ...);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
@@ -42,6 +61,7 @@ void			ft_putchar(char c);
 void			ft_putstr(char const *s);
 void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
+void			posputnbr(uintmax_t n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
@@ -85,5 +105,11 @@ void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_vect			*vect_new(size_t size);
+t_vect			*vect_add(t_vect *vect, char *str, size_t num_char);
+void			vect_free(t_vect **vect);
+char			*uitoa_base(uintmax_t x, intmax_t base);
+char			*itoa_base(intmax_t x, intmax_t base);
+int				get_next_line(const int fd, char **line);
 
 #endif

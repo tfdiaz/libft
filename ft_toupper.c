@@ -18,3 +18,16 @@ int	ft_toupper(int c)
 		return ('A' + (c - 'a'));
 	return (c);
 }
+
+void	prtup_str(char **s)
+{
+	int i;
+
+	i = 0;
+	while ((*s)[i] != '\0')
+	{
+		if ((*s)[i] >= 'a' && (*s)[i] <= 'z')
+			(*s)[i] -= 32;
+		i++;
+	}
+}

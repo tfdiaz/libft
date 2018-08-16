@@ -6,7 +6,7 @@
 /*   By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/10 20:05:02 by tdiaz             #+#    #+#             */
-/*   Updated: 2018/07/11 10:35:36 by tdiaz            ###   ########.fr       */
+/*   Updated: 2018/07/12 11:39:21 by tdiaz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,18 @@ char		**ft_strsplit(char const *s, char c)
 	if (s == NULL)
 		return (NULL);
 	wd = delmc(s, c);
-	ret = (char**)malloc(sizeof(char*) * (delmc(s, c) + 1));
-	if (ret == NULL)
+	if ((ret = (char**)malloc(sizeof(char*) * (delmc(s, c) + 1))) == NULL)
 		return (NULL);
 	while (wd--)
 	{
 		while (*s == c && *s != '\0')
 			s++;
-		ret[id] = ft_strsub(s, 0, wdlen(s, c));
-		if (ret[id] == NULL)
+		if ((ret[id] = ft_strsub(s, 0, wdlen(s, c))) == NULL)
+		{
+			while (--id >= 0)
+				free(ret[id]);
 			return (NULL);
+		}
 		s = s + wdlen(s, c);
 		id++;
 	}

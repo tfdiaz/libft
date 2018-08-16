@@ -6,7 +6,7 @@
 #    By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/09 11:22:32 by tdiaz             #+#    #+#              #
-#    Updated: 2018/07/11 17:37:38 by tdiaz            ###   ########.fr        #
+#    Updated: 2018/07/17 20:26:28 by tdiaz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,15 @@ SRC = ft_strlen.c ft_putchar.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 	  ft_isascii.c ft_isprint.c ft_toupper.c ft_tolower.c ft_striter.c ft_strmap.c \
 	  ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c \
 	  ft_itoa.c ft_striteri.c ft_strnstr.c ft_strsplit.c ft_lstnew.c ft_lstdelone.c \
-	  ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c
+	  ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c vect_new.c vect_add.c \
+	  vect_free.c ft_printf.c itoa_base.c unicode.c wchar_funt.c \
+	  flags.c concheck.c prt_cws.c octhex.c clouds.c iu_prt.c get_next_line.c
 
 OBJS = $(SRC:.c=.o)
 
 $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 .PHONY: clean fclean all re
 

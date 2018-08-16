@@ -25,3 +25,20 @@ char	*ft_strdup(const char *s1)
 		str[i++] = *s1++;
 	return (str);
 }
+
+char	*prtstrdup(const char *s1)
+{
+	char	*str;
+	int		i;
+
+	i = 0;
+	if (s1 == NULL)
+		return (NULL);
+	str = ft_strnew(ft_strlen(s1));
+	if (str == NULL)
+		return (NULL);
+	while (*s1)
+		str[i++] = *s1++;
+	return (str);
+}
+

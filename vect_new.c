@@ -1,49 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   vect_new.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 17:38:44 by tdiaz             #+#    #+#             */
-/*   Updated: 2018/07/09 17:52:16 by tdiaz            ###   ########.fr       */
+/*   Created: 2018/07/17 19:04:14 by tdiaz             #+#    #+#             */
+/*   Updated: 2018/07/17 21:17:15 by tdiaz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+t_vect	*vect_new(size_t size)
 {
-	int	sgn;
-	int digit;
+	t_vect	*vect;
 
-	sgn = 1;
-	if (n < 0)
-		sgn = -1;
-	digit = n % 10;
-	if (digit != n)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar('0' + digit * sgn);
-	}
-	else
-	{
-		if (sgn < 0)
-			ft_putchar('-');
-		ft_putchar('0' + digit * sgn);
-	}
-}
-
-void	posputnbr(uintmax_t n)
-{
-	uintmax_t digit;
-
-	digit = n % 10;
-	if (digit != n)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar('0' + digit);
-	}
-	else
-		ft_putchar('0' + digit);
+	vect = (t_vect*)malloc(sizeof(t_vect));
+	if (!vect)
+		return (NULL);
+	vect->cap = size;
+	vect->len = 0;
+	vect->str = ft_strnew(size);
+	return (vect);
 }

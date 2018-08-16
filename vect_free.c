@@ -1,49 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   vect_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/09 17:38:44 by tdiaz             #+#    #+#             */
-/*   Updated: 2018/07/09 17:52:16 by tdiaz            ###   ########.fr       */
+/*   Created: 2018/07/17 19:33:04 by tdiaz             #+#    #+#             */
+/*   Updated: 2018/07/17 20:16:01 by tdiaz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr(int n)
+void	vect_free(t_vect **vect)
 {
-	int	sgn;
-	int digit;
-
-	sgn = 1;
-	if (n < 0)
-		sgn = -1;
-	digit = n % 10;
-	if (digit != n)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar('0' + digit * sgn);
-	}
-	else
-	{
-		if (sgn < 0)
-			ft_putchar('-');
-		ft_putchar('0' + digit * sgn);
-	}
-}
-
-void	posputnbr(uintmax_t n)
-{
-	uintmax_t digit;
-
-	digit = n % 10;
-	if (digit != n)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar('0' + digit);
-	}
-	else
-		ft_putchar('0' + digit);
+	if (vect == NULL)
+		return ;
+	free((*vect)->str);
+	free(*vect);
+	*vect = NULL;
 }
