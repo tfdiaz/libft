@@ -101,7 +101,7 @@ static void	fd_remove(t_fd **fd_lst, int fd)
 	}
 }
 
-int		get_next_line(const int fd, char **line)
+int			get_next_line(const int fd, char **line)
 {
 	t_vect		*vect;
 	static t_fd	*fd_lst;

@@ -41,4 +41,3 @@ char	*prtstrdup(const char *s1)
 		str[i++] = *s1++;
 	return (str);
 }
-
