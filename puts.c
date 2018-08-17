@@ -1,60 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   puts.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tdiaz <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/10 20:13:09 by tdiaz             #+#    #+#             */
-/*   Updated: 2018/07/11 14:12:42 by tdiaz            ###   ########.fr       */
+/*   Created: 2018/08/16 20:12:32 by tdiaz             #+#    #+#             */
+/*   Updated: 2018/08/16 20:12:34 by tdiaz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	wdlen(int n)
+void	ft_putchar(char c)
 {
-	size_t	i;
-
-	i = 1;
-	while (n /= 10)
-		i++;
-	return (i);
+	write(1, &c, 1);
 }
 
-char			*ft_itoa(int n)
+void	ft_putendl(char const *s)
 {
-	size_t			len;
-	char			*s;
-	unsigned int	tmp;
+	ft_putstr(s);
+	ft_putchar('\n');
+}
 
-	len = wdlen(n);
-	tmp = n;
-	if (n < 0)
+void	ft_putstr(char const *s)
+{
+	while (*s)
+		write(1, s++, 1);
+}
+
+void	prtputstr(char const *s)
+{
+	while (*s)
 	{
-		tmp = -n;
-		len++;
+		if (*s == 7)
+			write(1, "\0", 1);
+		else
+			write(1, s, 1);
+		s++;
 	}
-	if ((s = ft_strnew(len)) == NULL)
-		return (NULL);
-	s[--len] = tmp % 10 + '0';
-	while (tmp /= 10)
-		s[--len] = tmp % 10 + '0';
-	if (n < 0)
-		s[0] = '-';
-	return (s);
 }
 
-void	posputnbr(uintmax_t n)
+void	ft_putnbr(int n)
 {
-	uintmax_t digit;
+	int	sgn;
+	int digit;
 
+	sgn = 1;
+	if (n < 0)
+		sgn = -1;
 	digit = n % 10;
 	if (digit != n)
 	{
 		ft_putnbr(n / 10);
-		ft_putchar('0' + digit);
+		ft_putchar('0' + digit * sgn);
 	}
 	else
-		ft_putchar('0' + digit);
+	{
+		if (sgn < 0)
+			ft_putchar('-');
+		ft_putchar('0' + digit * sgn);
+	}
 }
