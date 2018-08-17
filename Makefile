@@ -41,7 +41,8 @@ $(NAME): $(OBJS)
 all: $(NAME)
 
 clean: 
-		@rm -rf *.o
+		@rm -f *.o
+		@cd printf/ && rm -f *.o
 
 fclean: clean
 		@rm -rf $(NAME)
